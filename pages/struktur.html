@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Strur Organisasi- Pondok Pesantren Anwarul Huda</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    
+    /* body { font-family: Arial, sans-serif; padding: 20px; background: #f4f6f7; }
+    h2 { color: #2c3e50; } */
+    form { max-width: 500px; margin: auto; background: white; padding: 20px; border-radius: 8px; }
+    input, textarea, select {
+      width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 4px;
+    }
+    button {
+      background-color: #3498db; color: white; padding: 10px 15px; border: none; border-radius: 4px;
+    }
+  
+    :root {
+      --primary-color: #2c3e50;
+      --secondary-color: #1abc9c;
+      --light-color: #f8f9fa;
+      --dark-color: #34495e;
+    }
+    
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--light-color);
+      color: #333;
+      line-height: 1.6;
+    }
+    
+    .navbar {
+      display: flex;
+      align-items: center;
+      background-color: var(--dark-color);
+      padding: 0 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .navbar-logo {
+      height: 40px;
+      margin-right: 20px;
+    }
+    
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      padding: 15px 20px;
+      transition: background-color 0.3s;
+    }
+    
+    
+    footer {
+      background-color: var(--primary-color);
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 60px;
+    }
+    
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        padding: 10px;
+      }
+      
+     
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <img src="/img/logo.png" alt="Logo Pesantren" class="navbar-logo" />
+    <a href="../index.html">Home</a>
+    <a href="pendaftaran.html">Pendaftaran</a>
+    <a href="gallery.html">Galeri</a>
+    <a href="visi-misi.html">Visi Misi</a>
+    <a href="#">Kontak</a>
+  </nav>
+
+ <div class="organization-structure">
+  <h2 class="section-title">Struktur Organisasi Pesantren</h2>
+  <div class="structure-container">
+    <!-- Item 1 -->
+    <div class="structure-item">
+      <div class="profile-photo">
+        <img src="https://via.placeholder.com/150" alt="KH. Hamid Awaluddin">
+      </div>
+      <div class="profile-info">
+        <div class="position">Pimpinan Pesantren</div>
+        <div class="name">KH. Hamid Awaluddin</div>
+        <div class="contact">
+          <i class="fas fa-phone"></i> +62 123 4567 8901
+          <i class="fas fa-envelope"></i> pimpinan@pesantren.com
+        </div>
+      </div>
+    </div>
+    
+    <!-- Item 2 -->
+    <div class="structure-item">
+      <div class="profile-photo">
+        <img src="https://via.placeholder.com/150" alt="Ust. Awaluddin">
+      </div>
+      <div class="profile-info">
+        <div class="position">Wakil Pimpinan</div>
+        <div class="name">Ust. Awaluddin</div>
+        <div class="contact">
+          <i class="fas fa-phone"></i> +62 123 4567 8902
+          <i class="fas fa-envelope"></i> wakil@pesantren.com
+        </div>
+      </div>
+    </div>
+    
+    <!-- Item 3 -->
+    <div class="structure-item">
+      <div class="profile-photo">
+        <img src="https://via.placeholder.com/150" alt="Ustzh. Cantik">
+      </div>
+      <div class="profile-info">
+        <div class="position">Koordinator Tahfidz</div>
+        <div class="name">Ustzh. Cantik</div>
+        <div class="contact">
+          <i class="fas fa-phone"></i> +62 123 4567 8903
+          <i class="fas fa-envelope"></i> tahfidz@pesantren.com
+        </div>
+      </div>
+    </div>
+    
+    <!-- Item 4 -->
+    <div class="structure-item">
+      <div class="profile-photo">
+        <img src="https://via.placeholder.com/150" alt="Ust. Udin Sedunia">
+      </div>
+      <div class="profile-info">
+        <div class="position">Bagian Administrasi</div>
+        <div class="name">Ust. Udin Sedunia</div>
+        <div class="contact">
+          <i class="fas fa-phone"></i> +62 123 4567 8904
+          <i class="fas fa-envelope"></i> admin@pesantren.com
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Font Awesome untuk ikon */
+  @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+  
+  .organization-structure {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 30px;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f5f9ff;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+  
+  .section-title {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 40px;
+    position: relative;
+    padding-bottom: 15px;
+    font-size: 28px;
+  }
+  
+  .section-title:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 4px;
+    background: linear-gradient(90deg, #3498db, #9b59b6);
+    border-radius: 2px;
+  }
+  
+  .structure-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+  
+  .structure-item {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    border-left: 5px solid #3498db;
+  }
+  
+  .structure-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  }
+  
+  .profile-photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 25px;
+    border: 5px solid #e8f4fc;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    flex-shrink: 0;
+  }
+  
+  .profile-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .profile-info {
+    flex-grow: 1;
+  }
+  
+  .position {
+    font-weight: 600;
+    color: #3498db;
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+  
+  .name {
+    color: #2c3e50;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  
+  .contact {
+    color: #7f8c8d;
+    font-size: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  
+  .contact i {
+    margin-right: 5px;
+    color: #3498db;
+  }
+  
+  @media (max-width: 768px) {
+    .structure-item {
+      flex-direction: column;
+      text-align: center;
+      padding: 20px;
+    }
+    
+    .profile-photo {
+      margin-right: 0;
+      margin-bottom: 20px;
+    }
+    
+    .contact {
+      justify-content: center;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .organization-structure {
+      padding: 20px;
+    }
+    
+    .section-title {
+      font-size: 24px;
+    }
+  }
+</style>
+
+ <footer>
+    <p>&copy; 2025 Pondok Pesantren Anwarul Huda. All Rights Reserved.</p>
+  </footer>
+</body>
+</html>
