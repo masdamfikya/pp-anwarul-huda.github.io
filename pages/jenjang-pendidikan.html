@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jenjang Pendidikan - Pondok Pesantren Anwarul Huda</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #0F4D00;
+      --secondary-color: #1abc9c;
+      --light-color: #f8f9fa;
+      --dark-color: #2c3e50;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--light-color);
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Header Styles */
+    header {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+      position: relative;
+    }
+
+    .header-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .header-bg-logo {
+      position: absolute;
+      opacity: 0.1;
+      max-height: 80%;
+      max-width: 80%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+    }
+
+    header img.header-logo {
+      height: 80px;
+      margin-bottom: 10px;
+    }
+
+    /* Navigation */
+    .navbar {
+      background-color: var(--dark-color);
+      display: flex;
+      justify-content: center;
+      padding: 0 20px;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      padding: 15px 20px;
+      transition: background-color 0.3s;
+    }
+
+    .navbar a:hover {
+      background-color: var(--secondary-color);
+    }
+
+    /* Main Content */
+    .main-container {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .page-title {
+      text-align: center;
+      color: var(--primary-color);
+      margin-bottom: 40px;
+      position: relative;
+      padding-bottom: 15px;
+    }
+
+    .page-title:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 150px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+    }
+
+    /* Education Levels */
+    .education-levels {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .level-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .level-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+
+    .level-header {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .level-body {
+      padding: 20px;
+    }
+
+    .level-features {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .level-features li {
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      align-items: center;
+    }
+
+    .level-features li:last-child {
+      border-bottom: none;
+    }
+
+    .level-features i {
+      margin-right: 10px;
+      color: var(--secondary-color);
+    }
+
+    .level-btn {
+      display: block;
+      text-align: center;
+      background-color: var(--secondary-color);
+      color: white;
+      padding: 12px;
+      border-radius: 5px;
+      text-decoration: none;
+      margin-top: 20px;
+      transition: background-color 0.3s;
+    }
+
+    .level-btn:hover {
+      background-color: #16a085;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--dark-color);
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 50px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .navbar a {
+        width: 100%;
+        text-align: center;
+      }
+      
+      .education-levels {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ========== NAVIGASI RESPONSIF ========== */
+    /* Navbar Desktop */
+    .navbar {
+      background-color: var(--dark-color);
+      display: flex;
+      justify-content: center;
+      padding: 0 20px;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      padding: 15px 20px;
+      transition: background-color 0.3s;
+    }
+
+    .navbar a:hover {
+      background-color: var(--secondary-color);
+    }
+
+    /* Tombol Hamburger (hanya tampil di mobile) */
+    .hamburger-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      padding: 15px;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    /* Sidebar Mobile */
+    .mobile-sidebar {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1000;
+      top: 0;
+      left: 0;
+      background-color: var(--dark-color);
+      overflow-x: hidden;
+      transition: 0.5s;
+      padding-top: 60px;
+    }
+
+    .mobile-sidebar.open {
+      width: 250px;
+    }
+
+    .mobile-sidebar a {
+      padding: 15px 20px;
+      text-decoration: none;
+      font-size: 18px;
+      color: white;
+      display: block;
+      transition: 0.3s;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .mobile-sidebar a:hover {
+      background-color: var(--secondary-color);
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 25px;
+      font-size: 36px;
+      color: white;
+      cursor: pointer;
+    }
+
+    /* Overlay saat sidebar terbuka */
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 999;
+    }
+
+    /* Responsif */
+    @media (max-width: 768px) {
+      /* Sembunyikan navbar desktop */
+      .navbar {
+        display: none;
+      }
+
+      /* Tampilkan tombol hamburger */
+      .hamburger-btn {
+        display: block;
+      }
+
+      /* Penyesuaian header untuk mobile */
+      header {
+        padding: 15px 40px 15px 15px;
+        text-align: left;
+      }
+
+      .header-content {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header dengan Hamburger Button -->
+  <header>
+    <img src="/img/logopp.png" alt="Logo Pesantren" class="header-bg-logo">
+    <button class="hamburger-btn" id="hamburgerBtn">
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="header-content">
+      <img src="/img/logopp.png" alt="Logo Pesantren" class="header-logo">
+      <h1>Pondok Pesantren Anwarul Huda</h1>
+      <p>Menghidupkan Cahaya Ilmu dan Akhlak</p>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <a href="../index.html">Home</a>
+    <a href="jenjang-pendidikan.html" class="active">Jenjang Pendidikan</a>
+    <a href="#">Fasilitas</a>
+    <a href="#">Pendaftaran</a>
+    <a href="#">Kontak</a>
+  </nav>
+
+  <!-- Navbar Desktop -->
+  <nav class="navbar">
+    <a href="index.html">Beranda</a>
+    <a href="jenjang-pendidikan.html" class="active">Jenjang Pendidikan</a>
+    <a href="fasilitas.html">Fasilitas</a>
+    <a href="pendaftaran.html">Pendaftaran</a>
+    <a href="kontak.html">Kontak</a>
+  </nav>
+
+  <!-- Sidebar Mobile -->
+  <div class="mobile-sidebar" id="mobileSidebar">
+    <a href="javascript:void(0)" class="close-btn" id="closeBtn">&times;</a>
+    <a href="index.html">Beranda</a>
+    <a href="jenjang-pendidikan.html" class="active">Jenjang Pendidikan</a>
+    <a href="fasilitas.html">Fasilitas</a>
+    <a href="pendaftaran.html">Pendaftaran</a>
+    <a href="kontak.html">Kontak</a>
+  </div>
+
+  <!-- Overlay -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Main Content (tetap sama seperti sebelumnya) -->
+  <div class="main-container">
+    <h2 class="page-title">Jenjang Pendidikan</h2>
+    
+    <div class="education-levels">
+      <!-- TK/TPQ -->
+      <div class="level-card">
+        <div class="level-header">
+          <h3>TK/TPQ Anwarul Huda</h3>
+          <p>Usia 4-6 Tahun</p>
+        </div>
+        <div class="level-body">
+          <ul class="level-features">
+            <li><i class="fas fa-check"></i> Pembelajaran dasar Al-Qur'an</li>
+            <li><i class="fas fa-check"></i> Pendidikan akhlak mulia</li>
+            <li><i class="fas fa-check"></i> Pengembangan motorik halus</li>
+            <li><i class="fas fa-check"></i> Program tahfidz juz 30</li>
+            <li><i class="fas fa-check"></i> Kegiatan kreativitas anak</li>
+          </ul>
+          <a href="pendaftaran.html" class="level-btn">Daftar Sekarang</a>
+        </div>
+      </div>
+
+      <!-- Madrasah Ibtidaiyah -->
+      <div class="level-card">
+        <div class="level-header">
+          <h3>Madrasah Ibtidaiyah</h3>
+          <p>Kelas 1-6</p>
+        </div>
+        <div class="level-body">
+          <ul class="level-features">
+            <li><i class="fas fa-check"></i> Kurikulum Diniyah dan Umum</li>
+            <li><i class="fas fa-check"></i> Tahfidz target 3 juz</li>
+            <li><i class="fas fa-check"></i> Bahasa Arab dasar</li>
+            <li><i class="fas fa-check"></i> Pembelajaran sains Islami</li>
+            <li><i class="fas fa-check"></i> Ekstrakurikuler pilihan</li>
+          </ul>
+          <a href="pendaftaran.html" class="level-btn">Daftar Sekarang</a>
+        </div>
+      </div>
+
+      <!-- Madrasah Tsanawiyah -->
+      <div class="level-card">
+        <div class="level-header">
+          <h3>Madrasah Tsanawiyah</h3>
+          <p>Kelas 7-9</p>
+        </div>
+        <div class="level-body">
+          <ul class="level-features">
+            <li><i class="fas fa-check"></i> Penguatan kitab kuning</li>
+            <li><i class="fas fa-check"></i> Tahfidz target 5 juz</li>
+            <li><i class="fas fa-check"></i> Bahasa Arab aktif</li>
+            <li><i class="fas fa-check"></i> Pemantapan aqidah</li>
+            <li><i class="fas fa-check"></i> Keterampilan hidup Islami</li>
+          </ul>
+          <a href="pendaftaran.html" class="level-btn">Daftar Sekarang</a>
+        </div>
+      </div>
+
+      <!-- Madrasah Aliyah -->
+      <div class="level-card">
+        <div class="level-header">
+          <h3>Madrasah Aliyah</h3>
+          <p>Kelas 10-12</p>
+        </div>
+        <div class="level-body">
+          <ul class="level-features">
+            <li><i class="fas fa-check"></i> Program tahfidz 10 juz</li>
+            <li><i class="fas fa-check"></i> Penguasaan kitab kuning</li>
+            <li><i class="fas fa-check"></i> Bahasa Arab dan Inggris aktif</li>
+            <li><i class="fas fa-check"></i> Konsentrasi keagamaan</li>
+            <li><i class="fas fa-check"></i> Persiapan perguruan tinggi</li>
+          </ul>
+          <a href="pendaftaran.html" class="level-btn">Daftar Sekarang</a>
+        </div>
+      </div>
+
+      <!-- Tahfidzul Qur'an -->
+      <div class="level-card">
+        <div class="level-header">
+          <h3>Program Tahfidzul Qur'an</h3>
+          <p>Khusus Hafalan</p>
+        </div>
+        <div class="level-body">
+          <ul class="level-features">
+            <li><i class="fas fa-check"></i> Target hafalan 30 juz</li>
+            <li><i class="fas fa-check"></i> Metode mutqin</li>
+            <li><i class="fas fa-check"></i> Bimbingan qira'ah</li>
+            <li><i class="fas fa-check"></i> Program takhasus</li>
+            <li><i class="fas fa-check"></i> Sertifikasi sanad</li>
+          </ul>
+          <a href="pendaftaran.html" class="level-btn">Daftar Sekarang</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2023 Pondok Pesantren Anwarul Huda | Jambi, Indonesia</p>
+    <p>
+      <a href="#" style="color: white;"><i class="fab fa-facebook"></i></a>
+      <a href="#" style="color: white;"><i class="fab fa-instagram"></i></a>
+      <a href="#" style="color: white;"><i class="fab fa-youtube"></i></a>
+    </p>
+  </footer>
+  <!-- JavaScript untuk Menu Mobile -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const hamburgerBtn = document.getElementById('hamburgerBtn');
+      const closeBtn = document.getElementById('closeBtn');
+      const mobileSidebar = document.getElementById('mobileSidebar');
+      const overlay = document.getElementById('overlay');
+
+      // Buka sidebar
+      hamburgerBtn.addEventListener('click', function() {
+        mobileSidebar.classList.add('open');
+        overlay.style.display = 'block';
+        document.body.style.overflow = 'hidden'; // Mencegah scroll
+      });
+
+      // Tutup sidebar
+      closeBtn.addEventListener('click', function() {
+        mobileSidebar.classList.remove('open');
+        overlay.style.display = 'none';
+        document.body.style.overflow = 'auto';
+      });
+
+      // Tutup saat klik overlay
+      overlay.addEventListener('click', function() {
+        mobileSidebar.classList.remove('open');
+        overlay.style.display = 'none';
+        document.body.style.overflow = 'auto';
+      });
+    });
+  </script>
+</body>
+</html>
