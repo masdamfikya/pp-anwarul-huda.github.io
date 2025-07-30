@@ -1,80 +1,123 @@
-// Accordion
-document.querySelectorAll(".accordion").forEach(btn => {
-  btn.addEventListener("click", function () {
-    this.classList.toggle("active");
-    let panel = this.nextElementSibling;
-    panel.style.display = panel.style.display === "block" ? "none" : "block";
-  });
+// ===== MAIN INITIALIZATION =====
+document.addEventListener('DOMContentLoaded', function() {
+  initAccordion();
+  initSlideshow();
+  initSidebar();
 });
 
-// Slideshow untuk testimoni
-let testiIndex = 0;
-showTesti();
-
-function showTesti() {
-  const slides = document.querySelectorAll(".testi");
-  slides.forEach(s => s.style.display = "none");
-  testiIndex++;
-  if (testiIndex > slides.length) testiIndex = 1;
-  slides[testiIndex - 1].style.display = "block";
-  setTimeout(showTesti, 4000);
+// ===== ACCORDION =====
+function initAccordion() {
+  document.querySelectorAll(".accordion").forEach(btn => {
+    btn.addEventListener("click", function() {
+      this.classList.toggle("active");
+      const panel = this.nextElementSibling;
+      panel.style.display = panel.style.display === "block" ? "none" : "block";
+    });
+  });
 }
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const slides = document.querySelectorAll('.slide');
-    let currentSlide = 0;
-    const totalSlides = slides.length;
-    let slideInterval;
+// ===== SLIDESHOW =====
+function initSlideshow() {
+  const slides = document.querySelectorAll('.slide');
+  const dots = document.querySelectorAll('.dot');
+  if (slides.length === 0) return;
 
-    function showSlide(n) {
-      slides.forEach(slide => slide.classList.remove('active'));
-      currentSlide = (n + totalSlides) % totalSlides;
-      slides[currentSlide].classList.add('active');
-    }
+  let currentSlide = 0;
+  const totalSlides = slides.length;
+  let slideInterval;
 
-    function nextSlide() {
-      showSlide(currentSlide + 1);
-    }
-
-    // Navigasi manual
-    document.querySelector('.prev-slide').addEventListener('click', () => {
-      pauseSlideshow();
-      showSlide(currentSlide - 1);
-    });
+  function showSlide(n) {
+    // Sembunyikan semua slide
+    slides.forEach(slide => slide.classList.remove('active'));
     
-    document.querySelector('.next-slide').addEventListener('click', () => {
-      pauseSlideshow();
-      nextSlide();
-    });
-
-    // Auto-slide
-    function startSlideshow() {
-      slideInterval = setInterval(nextSlide, 5000);
-    }
-
-    function pauseSlideshow() {
-      clearInterval(slideInterval);
-    }
-
-    // Mulai slideshow
-    showSlide(0);
-    startSlideshow();
-
-    // Jeda saat hover
-    const slideshow = document.querySelector('.slideshow-container');
-    slideshow.addEventListener('mouseenter', pauseSlideshow);
-    slideshow.addEventListener('mouseleave', startSlideshow);
-  });
-
-  // Mobile Sidebar
-  function toggleSidebar() {
-    const sidebar = document.getElementById('sidebar');
-    sidebar.style.width = sidebar.style.width === '250px' ? '0' : '250px';
+    // Update current slide
+    currentSlide = (n + totalSlides) % totalSlides;
+    
+    // Tampilkan slide baru
+    slides[currentSlide].classList.add('active');
+    
+    // Update dots
+    dots.forEach(dot => dot.classList.remove('active'));
+    dots[currentSlide].classList.add('active');
   }
 
-  // Tambahkan di dalam fungsi showSlide()
-  const dots = document.querySelectorAll('.dot');
-  dots.forEach(dot => dot.classList.remove('active'));
-  dots[currentSlide].classList.add('active');
-</script>
+  function nextSlide() {
+    showSlide(currentSlide + 1);
+  }
+
+  function startSlideshow() {
+    slideInterval = setInterval(nextSlide, 5000);
+  }
+
+  function pauseSlideshow() {
+    clearInterval(slideInterval);
+  }
+
+  // Navigation handlers
+  document.querySelector('.prev-slide')?.addEventListener('click', () => {
+    pauseSlideshow();
+    showSlide(currentSlide - 1);
+    startSlideshow();
+  });
+
+  document.querySelector('.next-slide')?.addEventListener('click', () => {
+    pauseSlideshow();
+    nextSlide();
+    startSlideshow();
+  });
+
+  // Dot navigation
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+      pauseSlideshow();
+      showSlide(index);
+      startSlideshow();
+    });
+  });
+
+  // Pause on hover
+  const slideshow = document.querySelector('.slideshow-container');
+  slideshow?.addEventListener('mouseenter', pauseSlideshow);
+  slideshow?.addEventListener('mouseleave', startSlideshow);
+
+  // Initialize
+  showSlide(0);
+  startSlideshow();
+}
+
+// ===== SIDEBAR =====
+function initSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const hamburger = document.querySelector('.hamburger');
+  const closeBtn = document.querySelector('.sidebar .closebtn');
+
+  if (!sidebar || !hamburger) return;
+
+  function toggleSidebar() {
+    sidebar.classList.toggle('open');
+    if (sidebar.classList.contains('open')) {
+      document.addEventListener('click', closeSidebarOutside);
+    } else {
+      document.removeEventListener('click', closeSidebarOutside);
+    }
+  }
+
+  function closeSidebarOutside(event) {
+    if (!sidebar.contains(event.target) && !hamburger.contains(event.target)) {
+      sidebar.classList.remove('open');
+      document.removeEventListener('click', closeSidebarOutside);
+    }
+  }
+
+  // Event Listeners
+  hamburger.addEventListener('click', toggleSidebar);
+  if (closeBtn) closeBtn.addEventListener('click', toggleSidebar);
+
+  // Close when clicking on links
+  document.querySelectorAll('.sidebar a').forEach(link => {
+    if (!link.parentElement.classList.contains('dropdown-sidebar') && 
+        !link.classList.contains('dropdown-sidebar')) {
+      link.addEventListener('click', toggleSidebar);
+    }
+  });
+}
