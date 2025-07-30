@@ -199,15 +199,26 @@
       object-fit: cover;
     }
 
+    /* Animasi untuk slide-caption */
     .slide-caption {
       position: absolute;
-      bottom: 0;
+      bottom: -13%; /* Mulai dari bawah luar layar */
       left: 0;
-      width: 100%;
+      width: 42%;
       padding: 15px;
       background: rgba(0,0,0,0.7);
       color: white;
-      text-align: center;
+      /* text-align: center; */
+      transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+      opacity: 20;
+      /* border-radius: 20px; */
+      border-top-right-radius: 30px;
+      /* border-bottom-left-radius: 30px; */
+    }
+
+    .slide.active .slide-caption {
+      transform: translateY(-100%); /* Bergerak ke atas */
+      opacity: 1;
     }
 
     /* Navigation arrows */
@@ -231,17 +242,22 @@
     /* Dots indicator */
     .slide-dots {
       position: absolute;
-      bottom: 20px;
-      width: 100%;
+      bottom: -40px; /* Diubah dari -90px ke 20px */
+      left: 36%;
+      transform: translateX(-50%);
       text-align: center;
       z-index: 10;
+      width: auto; /* Diubah dari 70% ke auto */
+      padding: 8px 12px;
+      background: rgba(0,0,0,0.3);
+      border-radius: 20px;
     }
 
     .dot {
       display: inline-block;
       width: 12px;
       height: 12px;
-      margin: 0 5px;
+      margin: 0 5px; /* Diperbaiki margin (sebelumnya "10 5px") */
       background-color: #bbb;
       border-radius: 50%;
       cursor: pointer;
@@ -249,7 +265,23 @@
     }
 
     .dot.active {
-      background-color: #333;
+      background-color: #fff; /* Diubah dari #333 ke #fff untuk kontras lebih baik */
+    }
+
+    /* Responsive adjustments */
+    @media screen and (max-width: 768px) {
+      .slide-dots {
+        bottom: 40px;
+        padding: 5px 8px;
+        left: 53%;
+      }
+      
+      .dot {
+        width: 10px;
+        height: 10px;
+        margin: 10 40px;
+        right: 80%;
+      }
     }
 
     /* News Update Section */
@@ -510,7 +542,7 @@
   <header>
     <img src="img/logopp.png" alt="Logo Pesantren" class="header-bg-logo" />
     <div class="header-content">
-      <img src="img/logopp.png" alt="Logo Pesantren" class="header-logo" />
+      <img src="/img/logopp.png" alt="Logo Pesantren" class="header-logo" />
       <h1>Pondok Pesantren Anwarul Huda</h1>
       <p>Menghidupkan Cahaya Ilmu dan Akhlak</p>
     </div>
@@ -545,20 +577,20 @@
       <div class="slideshow-container">
         <!-- Slide 1 -->
         <div class="slide active">
-          <img src="img/gbr1.jpg" class="slide-image" alt="Kegiatan Belajar">
-          <div class="slide-caption">Kegiatan Belajar Mengajar</div>
+          <img src="img/gbr1.jpg" class="slide-image" alt="Kegiatan Belajar1dsdssd">
+          <div class="slide-caption">Workshop BLK Desain Mode dan Tekstil</div>
         </div>
         
         <!-- Slide 2 -->
         <div class="slide">
           <img src="img/gbr2.jpg" class="slide-image" alt="Kegiatan Pesantren">
-          <div class="slide-caption">Kegiatan Pesantren</div>
+          <div class="slide-caption">Kegiatan Santri Putra</div>
         </div>
         
         <!-- Slide 3 -->
         <div class="slide">
           <img src="img/gbr3.jpg" class="slide-image" alt="Kegiatan Santri">
-          <div class="slide-caption">Kegiatan Santri</div>
+          <div class="slide-caption">Kegiatan Santri Putri</div>
         </div>
         
         <!-- Navigation -->
@@ -603,7 +635,7 @@
 
       // Start autoplay
       function startSlideshow() {
-        slideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+        slideInterval = setInterval(nextSlide, 3000); // Change slide every 5 seconds
       }
 
       // Pause autoplay
@@ -673,7 +705,7 @@
             <iframe 
               width="100%" 
               height="200" 
-              src="https://www.youtube.com/embed/uvCUWzDbjZk?autoplay=1" 
+              src="https://www.youtube.com/embed/uvCUWzDbjZk" // ?autoplay=1" 
               frameborder="0" 
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
               allowfullscreen>
@@ -750,7 +782,7 @@
         
         .slideshow-container,
         .right-sidebar {
-          width: 100%;
+          width: 70%;
         }
         
         .youtube-embed iframe {
@@ -770,7 +802,7 @@
 
   <!-- Layanan Cepat -->
   <div class="quick-services">
-    <div class="service-card" onclick="location.href='#cek'">
+    <div class="service-card" onclick="location.href='#nikah'">
       <div class="service-icon">
         <i class="fas fa-heart"></i>
       </div>
@@ -780,8 +812,8 @@
       <div class="service-icon">
         <i class="fas fa-search"></i>
       </div>
-      <h4>Cek </h4>
-      <p>Verifikasi data santri</p>
+      <h4>Cek Status Nikah</h4>
+      <p>Verifikasi data pernikahan</p>
     </div>
   </div>
 
